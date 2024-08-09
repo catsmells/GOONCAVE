@@ -9,3 +9,6 @@ Check out the **Issues** section of the repository. We've got a whole list of st
 
 ## 📹 Want your video on GOONCAVE?
 We pay people for OC! Message me on Catterchan!
+
+## 💞 Want to join the community?
+[Join our Discord!](https://discord.gg/8A8dygsSUH)
