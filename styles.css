@@ -54,7 +54,9 @@
         cursor: pointer;
         font: 12px Arial, sans-serif;
       }
-
+      hr {
+	      border: none;
+      }
       #menuContainer button:hover {
         background: #111;
         color: #ccc;
@@ -90,4 +92,15 @@
         max-width: 100%;
         max-height: 100%;
         object-fit: contain;
+      }
+      #randomButton {
+	      background-color: #156064;
+	      color: #dcfaf9;
+	      transition: background-color 0.3s ease;
+      }
+      #randomButton:hover {
+	      background-color: #8ad7eb; !important;
+      }
+      #randomButton:active {
+	      background-color: #70b2c2; !important;
       }
