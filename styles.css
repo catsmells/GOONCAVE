@@ -99,8 +99,17 @@
 	      transition: background-color 0.3s ease;
       }
       #randomButton:hover {
-	      background-color: #8ad7eb; !important;
+	      background-color: #8ad7eb !important;
       }
       #randomButton:active {
-	      background-color: #70b2c2; !important;
+	      background-color: #70b2c2 !important;
+      }
+      #backgroundFileInput {
+        width: 100%;
+        padding: 5px;
+        margin-bottom: 10px;
+        color: #bbb;
+        background: #1a1a1a;
+        border: 1px solid #333;
+        font: 12px Arial, sans-serif;
       }
