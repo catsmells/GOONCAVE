@@ -139,3 +139,71 @@ document.addEventListener("keydown", function (event) {
     removeLastVideo();
   }
 });
+
+
+function setBackground(url) {
+  const layoutContainer = document.getElementById('layoutContainer');
+  layoutContainer.style.backgroundImage = `url('${url}')`;
+  layoutContainer.style.backgroundSize = 'cover';
+  layoutContainer.style.backgroundPosition = 'center';
+  layoutContainer.style.backgroundRepeat = 'no-repeat';
+  
+  // Ensure all GoldenLayout components are transparent
+  const goldenLayoutItems = document.querySelectorAll('.lm_item, .lm_item_container');
+  goldenLayoutItems.forEach(item => {
+    item.style.backgroundColor = 'transparent';
+  });
+}
+
+function handleFileUpload(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      resolve(e.target.result);
+    };
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+document.getElementById('setBackgroundButton').addEventListener('click', async function() {
+  const backgroundUrl = document.getElementById('backgroundInput').value;
+  const backgroundFile = document.getElementById('backgroundFileInput').files[0];
+
+  let imageUrl;
+
+  if (backgroundFile) {
+    // If a file is selected, use it
+    imageUrl = await handleFileUpload(backgroundFile);
+  } else if (backgroundUrl) {
+    // If no file is selected but a URL is entered, use the URL
+    imageUrl = backgroundUrl;
+  } else {
+    // If neither a file nor a URL is provided, alert the user
+    alert("Please enter a URL or select a file.");
+    return;
+  }
+
+  setBackground(imageUrl);
+  localStorage.setItem('caveBackground', imageUrl);
+
+  // Clear the inputs after setting the background
+  document.getElementById('backgroundInput').value = '';
+  document.getElementById('backgroundFileInput').value = '';
+});
+
+// Load saved background on page load
+document.addEventListener('DOMContentLoaded', function() {
+  const savedBackground = localStorage.getItem('caveBackground');
+  if (savedBackground) {
+    setBackground(savedBackground);
+  }
+});
+
+// Ensure background is maintained after GoldenLayout changes
+myLayout.on('itemCreated', function() {
+  const savedBackground = localStorage.getItem('caveBackground');
+  if (savedBackground) {
+    setBackground(savedBackground);
+  }
+});
